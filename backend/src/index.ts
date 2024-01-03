@@ -6,7 +6,7 @@ import cryptoRouter from './routes/cryptoApiRoutes'
 
 
 
-const app = express();
+export const app = express();
 
 app.use(cors()); 
 

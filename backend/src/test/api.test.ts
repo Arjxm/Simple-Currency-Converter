@@ -1,6 +1,6 @@
 import {describe, expect, test} from '@jest/globals';
 import request from 'supertest';
-import app from '';
+import {app} from '../index';
 
 
 describe('API Tests', () => {
