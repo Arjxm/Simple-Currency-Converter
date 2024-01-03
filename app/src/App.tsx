@@ -14,6 +14,8 @@ interface ConversionResponse {
   convertedAmount: number;
 }
 
+const apiBaseUrl = process.env.REACT_APP_BASE_URL || '';
+
 const App: React.FC = () => {
   const [cryptoList, setCryptoList] = useState<Crypto[]>([]);
   const [sourceCrypto, setSourceCrypto] = useState<string>('');
@@ -23,7 +25,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     // Fetch top 100 cryptocurrencies
-    axios.get<Crypto[]>(`https://${process.env.BASE_URL}/api/topCryptos`).then((response) => {
+    axios.get<Crypto[]>(`https://${apiBaseUrl}/api/topCryptos`).then((response) => {
       setCryptoList(response.data);
       setSourceCrypto(response.data[0]?.id || '');
     });
@@ -31,7 +33,7 @@ const App: React.FC = () => {
 
   const handleConvert = () => {
     axios
-      .post<ConversionResponse>(`https://${process.env.BASE_URL}/api/convertCurrency`, {
+      .post<ConversionResponse>(`https://${apiBaseUrl}/api/convertCurrency`, {
         sourceCrypto,
         amount,
         targetCurrency,
