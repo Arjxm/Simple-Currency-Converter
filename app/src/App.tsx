@@ -23,7 +23,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     // Fetch top 100 cryptocurrencies
-    axios.get<Crypto[]>(`${process.env.BASE_URL}/api/topCryptos`).then((response) => {
+    axios.get<Crypto[]>(`https://${process.env.BASE_URL}/api/topCryptos`).then((response) => {
       setCryptoList(response.data);
       setSourceCrypto(response.data[0]?.id || '');
     });
@@ -31,7 +31,7 @@ const App: React.FC = () => {
 
   const handleConvert = () => {
     axios
-      .post<ConversionResponse>(`${process.env.BASE_URL}/api/convertCurrency`, {
+      .post<ConversionResponse>(`https://${process.env.BASE_URL}/api/convertCurrency`, {
         sourceCrypto,
         amount,
         targetCurrency,
